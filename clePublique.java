@@ -4,8 +4,11 @@ import java.util.Random;
 
 public class clePublique {
 
-	static BigInteger varP;
-	static BigInteger varQ;
+	private static BigInteger varP;
+	private static BigInteger varQ;
+	private static BigInteger varN;
+	private static BigInteger varM;
+	private static BigInteger varE;
 	
 	clePublique(){
 		genererClePublic();
@@ -21,16 +24,15 @@ public class clePublique {
 			varQ= BigInteger.probablePrime(2, new Random());
 		}
 		
-		BigInteger n= varP.multiply(varQ);
-		BigInteger m= varP.subtract(BigInteger.ONE).multiply(varQ.subtract(BigInteger.ONE));
-		
-		BigInteger e= choisirE(m);
+		varN= varP.multiply(varQ);
+		varM=varP.subtract(BigInteger.ONE).multiply(varQ.subtract(BigInteger.ONE));		
+		varE=choisirE(varM);
 		
 		System.out.println("p: "+varP);
 		System.out.println("q: "+varQ);
-		System.out.println("n: "+n);
-		System.out.println("m: "+m);
-		System.out.println("e: "+e);
+		System.out.println("n: "+varN);
+		System.out.println("m: "+varM);
+		System.out.println("e: "+varE);
 		
 	}
 
@@ -46,6 +48,19 @@ public class clePublique {
 		}
 		return resultat;
 	}
+
+
+	public BigInteger getVarE() {
+		return varE;
+	}
+
+
+	
+
+	public BigInteger getVarM() {
+		return varM;
+	}
+
 
 	
 	

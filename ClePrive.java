@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class ClePrive {
 	
-	static BigInteger varE;
-	static BigInteger varM;
-	static BigInteger varU;
+	private static BigInteger varE;
+	private static BigInteger varM;
+	private static BigInteger varU;
 
 	ClePrive(BigInteger a, BigInteger b){
 		//varE= new BigInteger("7");
@@ -48,6 +48,18 @@ public static void genererClePrive(){
 		else
 			return calcul(un0, un1, vn0, vn1, rn0, rn1);
 			
+	}
+	
+	public static BigInteger getVarE() {
+		return varE;
+	}
+
+	public static BigInteger getVarM() {
+		return varM;
+	}
+
+	public static BigInteger getVarU() {
+		return varU;
 	}
 	
 }
