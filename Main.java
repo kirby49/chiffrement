@@ -16,6 +16,7 @@ public class Main {
 		
 		clePublique clePu = new clePublique();
 		ClePrive clePr = new ClePrive(clePu.getVarE(),clePu.getVarM());
+		clePr.ecrire();
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -28,6 +29,7 @@ public class Main {
 		test2.setAscii(tab);
 		test2.dechiffrement();
 		System.out.println(test2.getTexte());
+		
 		
 		
 		
