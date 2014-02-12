@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Reception implements Runnable {
 
 	private BufferedReader in;
-	private String message = null;
+	private String message = "";
 	
 	public Reception(BufferedReader in){
 		
@@ -14,11 +14,11 @@ public class Reception implements Runnable {
 	
 	public void run() {
 		
-		while(true){
+		while(!message.equals("exit")){
 	        try {
 	        	
 			message = in.readLine();
-			System.out.println("Server : " +message);
+			System.out.println(message);
 			
 		    } catch (IOException e) {
 				
