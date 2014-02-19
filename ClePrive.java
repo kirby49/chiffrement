@@ -10,12 +10,16 @@ public class ClePrive {
 	private static BigInteger varE;
 	private static BigInteger varM;
 	private static BigInteger varU;
+	private static BigInteger varN;
+	private static String name;
 
-	ClePrive(BigInteger a, BigInteger b){
+	ClePrive(BigInteger a, BigInteger b,BigInteger c, String n){
 		//varE= new BigInteger("7");
 		//varM= new BigInteger("4992");	
-		varE= a;
+		name=n;
+		varE=a;
 		varM=b;	
+		varN=c;
 		genererClePrive();
 	}
 	
@@ -26,31 +30,102 @@ public static void genererClePrive(){
 		BigInteger u0= BigInteger.ONE;
 		BigInteger u1=BigInteger.ZERO;
 		
-		varU =calcul(u0,u1,v0,v1,varE,varM);
+		varU =calcul(varE,varM, u0,u1,v0,v1);
 		
 		System.out.println("U a pour valeur :"+varU);
 	}
 	
 	//fonction récursive pour calculer u;
-	public static BigInteger calcul(BigInteger u0, BigInteger u1, BigInteger v0, BigInteger v1, BigInteger r0, BigInteger r1 ){
-		
-		BigInteger rn0=r1;
-		BigInteger un0=u1;
-		BigInteger vn0=v1;
-		BigInteger rn1=r0.subtract(r0.divide(r1).multiply(r1));
-		BigInteger un1=u0.subtract(r0.divide(r1).multiply(u1));;
-		BigInteger vn1=v0.subtract(r0.divide(r1).multiply(v1));;
+	public static BigInteger calcul(BigInteger r0, BigInteger r1,BigInteger u0, BigInteger u1, BigInteger v0, BigInteger v1 ){
 		/*
-		System.out.println("r: "+rn0+" "+rn1);
-		System.out.println("u: "+un0+" "+un1);
-		System.out.println("v: "+vn0+" "+vn1);
-		*/
-		if (rn1.equals(BigInteger.ZERO)) 
-			return un1.add(un0);
+		BigInteger rn0=r0;
+		BigInteger un0=u0;
+		BigInteger vn0=v0;
+		BigInteger rn1=r1;
+		BigInteger un1=u1;
+		BigInteger vn1=v1;
 		
+		while (!(rn1.compareTo(BigInteger.ZERO)==0)) 
+		{
+			BigInteger tempR=rn0.subtract(rn0.divide(rn1).multiply(rn1));
+			BigInteger tempU=un0.subtract(rn0.divide(rn1).multiply(un1));
+			BigInteger tempV=vn0.subtract(rn0.divide(rn1).multiply(vn1));
+			rn0=r1;
+			un0=u1;
+			vn0=v1;
+			rn1=tempR;
+			un1=tempU;
+			vn1= tempV;
+			System.out.println("r: "+rn0+" "+rn1 );
+			System.out.println("u: "+un0+" "+un1);
+			System.out.println("v: "+vn0+" "+vn1);
+		}
+		System.out.println("dehors de la boucle");
+		if(new BigInteger("2").compareTo(un0)==-1)
+		{
+			System.out.println("dans la condition 1");
+			return un0;
+		}
 		else
-			return calcul(un0, un1, vn0, vn1, rn0, rn1);
-			
+		{
+			System.out.println("dans la condition 2");
+			BigInteger k = new BigInteger("-1");
+			BigInteger res= un0.subtract(k.multiply(varM));
+			while(new BigInteger("2").compareTo(res)==-1)
+			{
+				k.subtract(BigInteger.ONE);
+				res= un0.subtract(k.multiply(varM));
+				
+			}
+			return res;
+		}	
+		*/		
+		BigInteger rn0=r0;
+		BigInteger un0=u0;
+		BigInteger vn0=v0;
+		BigInteger rn1=r1;
+		BigInteger un1=u1;
+		BigInteger vn1=v1;
+		
+		if (rn1.equals(BigInteger.ZERO)) 
+		{
+			System.out.println("r: "+rn0+" "+rn1+" ");
+			System.out.println("u: "+un0+" "+un1+" ");
+			System.out.println("v: "+vn0+" "+vn1+" ");
+			//if((new BigInteger("2").compareTo(un0)==-1)&&(un0.compareTo(varM)==-1))
+			if((new BigInteger("2").compareTo(un0)==-1))
+			{
+				System.out.println("boucle un");
+				return un0;
+			}
+			else
+			{
+				BigInteger k = new BigInteger("-1");
+				BigInteger res= un0.subtract(k.multiply(varM));
+				//while(!(new BigInteger("2").compareTo(res)==-1)&&(res.compareTo(varM)==-1))
+				while(!(new BigInteger("2").compareTo(res)==-1))			
+				{
+					k.subtract(BigInteger.ONE);
+					res= un0.subtract(k.multiply(varM));
+				}
+				System.out.println("un0: "+un0+" k: "+k+" m: "+varM);
+				return res;
+			}				
+		}
+	
+		else
+		{
+			BigInteger rn2=r0.subtract(r0.divide(r1).multiply(r1));
+			BigInteger un2=u0.subtract(r0.divide(r1).multiply(u1));;
+			BigInteger vn2=v0.subtract(r0.divide(r1).multiply(v1));;
+			/*
+			System.out.println("r: "+rn0+" "+rn1+" "+ rn2 );
+			System.out.println("u: "+un0+" "+un1+" "+un2);
+			System.out.println("v: "+vn0+" "+vn1+" "+vn2);
+			*/
+			return calcul(rn1, rn2,un1, un2, vn1, vn2);
+		}	
+		
 	}
 	
 	public static BigInteger getVarE() {
@@ -61,14 +136,18 @@ public static void genererClePrive(){
 		return varM;
 	}
 
-	public static BigInteger getVarU() {
+	public BigInteger getVarU() {
 		return varU;
+	}
+	
+	public BigInteger getVarN() {
+		return varN;
 	}
 	
 	public void ecrire()
 	{
 		//on va chercher le chemin et le nom du fichier et on me tout ca dans un String
-		String adressedufichier = "/home/etudiant/" + "ClePublic";
+		String adressedufichier = "./"+name+"ClePrivee";
 	
 		try
 		{
@@ -78,13 +157,14 @@ public static void genererClePrive(){
 			 * true signifie qu on ajoute dans le fichier (append), on ne marque pas par dessus 
 			 
 			 */
-			FileWriter fw = new FileWriter(adressedufichier, true);
+			FileWriter fw = new FileWriter(adressedufichier, false);
 			
 			// le BufferedWriter output auquel on donne comme argument le FileWriter fw cree juste au dessus
 			BufferedWriter output = new BufferedWriter(fw);
 			
 			//on marque dans le fichier ou plutot dans le BufferedWriter qui sert comme un tampon(stream)
-			output.write("varE: "+varE+"\n"+"VarM: "+varM+"\n"+"VarU: "+varU);
+			//output.write("varE: "+varE+"\n"+"VarM: "+varM+"\n"+"VarU: "+varU);
+			output.write(varN+" "+varU+"\n");
 			//on peut utiliser plusieurs fois methode write
 			
 			output.flush();
@@ -100,5 +180,7 @@ public static void genererClePrive(){
 			}
 
 	}
+
+	
 	
 }

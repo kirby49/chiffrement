@@ -4,13 +4,13 @@ import java.math.BigInteger;
 
 public class messageADechiffrer extends Message {
 
-	public messageADechiffrer(BigInteger e, BigInteger n) {
-		super(e, n);
+	public messageADechiffrer( BigInteger n,BigInteger u) {
+		super(n,u);
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void dechiffrement(){
-		char[] tab = new char[100];
+		char[] tab = new char[ascii.length];
 		for(int i =0 ; i<ascii.length; i++){
 			//int a =(int)texte.charAt(i);
 			BigInteger A= ascii[i];

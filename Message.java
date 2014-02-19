@@ -10,23 +10,35 @@ abstract public class Message {
 	protected BigInteger varN;
 	
 	
-	public Message(BigInteger eoru, BigInteger n){
+	public Message(BigInteger n,BigInteger eoru){
 		varEorU = eoru;
 		varN= n;
-		ascii=new BigInteger [100];
 	}
 
 	
 	public String getTexte() {
-		return texte;
+		if(texte.isEmpty())
+			{
+				System.out.println("le texte n'est pas initialisé correctement");
+				return null;
+			}
+		else
+			return texte;
 	}
 
 	public void setTexte(String te) {
 		texte = te;
+		ascii= new BigInteger[texte.length()];
 	}
 
 	public BigInteger[] getAscii() {
-		return ascii;
+		if(ascii.length==0)
+		{
+			System.out.println("le tableau n'est pas initialisé correctement");
+			return null;
+		}
+		else
+			return ascii;
 	}
 	
 	public void setAscii(BigInteger[] tab) {

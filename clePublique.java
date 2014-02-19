@@ -2,6 +2,7 @@ package chiffrement;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -12,23 +13,27 @@ public class clePublique {
 	private static BigInteger varN;
 	private static BigInteger varM;
 	private static BigInteger varE;
+	private static String name;
 	
-	clePublique(){
+	clePublique(String n){
+		name =n;
 		genererClePublic();
 	}
 	
 	
 	public static void genererClePublic(){
 		//initialisation des bigIntegers p et q en mode aleatoire
-		varP= BigInteger.probablePrime(10, new Random());
-		varQ= BigInteger.probablePrime(10, new Random());
+		varP= BigInteger.probablePrime(1000, new Random());
+		varQ= BigInteger.probablePrime(100, new Random());
 		
 		while(varP.equals(varQ)){
-			varQ= BigInteger.probablePrime(2, new Random());
+			varQ= BigInteger.probablePrime(100, new Random());
 		}
+		//if (varP.isProbablePrime(100)) System.out.println("la variable p est peut etre pas premier");
+		//if (varQ.isProbablePrime(100)) System.out.println("la variable q est peut etre pas premier");
 		
 		varN= varP.multiply(varQ);
-		varM=varP.subtract(BigInteger.ONE).multiply(varQ.subtract(BigInteger.ONE));		
+		varM=varP.subtract(BigInteger.ONE).multiply(varQ.subtract(BigInteger.ONE));
 		varE=choisirE(varM);
 		
 		System.out.println("p: "+varP);
@@ -39,7 +44,8 @@ public class clePublique {
 		
 	}
 
-	public static BigInteger choisirE(BigInteger m) {
+	public static  BigInteger choisirE(BigInteger m) {
+		/*
 		BigInteger resultat = new BigInteger(10,new Random());
 		//boucle tant que resultat n'est pas impair et premier avec m
 		while((resultat.mod(BigInteger.ONE.add(BigInteger.ONE)).equals(BigInteger.ZERO)))
@@ -50,6 +56,24 @@ public class clePublique {
 				resultat = new BigInteger(10,new Random());
 		}
 		return resultat;
+		*/
+		BigInteger resultat = new BigInteger(10,new Random());
+		//boucle tant que resultat n'est pas impair et premier avec m
+		while
+			(
+				(
+						!(resultat.gcd(m).compareTo(BigInteger.ONE)==0)
+				) 
+				/*
+				&&			
+				(
+						!(resultat.mod(new BigInteger("2")).compareTo(BigInteger.ONE)==0)
+				) 
+				*/
+			)
+			resultat = new BigInteger(10,new Random());
+		
+			return resultat;
 	}
 
 
@@ -57,7 +81,9 @@ public class clePublique {
 		return varE;
 	}
 
-
+	public BigInteger getVarN() {
+		return varN;
+	}
 	
 
 	public BigInteger getVarM() {
@@ -67,7 +93,7 @@ public class clePublique {
 	public void ecrire()
 	{
 		//on va chercher le chemin et le nom du fichier et on me tout ca dans un String
-		String adressedufichier = "/home/etudiant/" + "ClePrive";
+		String adressedufichier = "."+name + "ClePublique";
 	
 		try
 		{
@@ -77,16 +103,17 @@ public class clePublique {
 			 * true signifie qu on ajoute dans le fichier (append), on ne marque pas par dessus 
 			 
 			 */
-			FileWriter fw = new FileWriter(adressedufichier, true);
+			FileWriter fw = new FileWriter(adressedufichier, false);
 			
 			// le BufferedWriter output auquel on donne comme argument le FileWriter fw cree juste au dessus
-			BufferedWriter output = new BufferedWriter(fw);
+			PrintWriter output = new PrintWriter(fw);
 			
 			//on marque dans le fichier ou plutot dans le BufferedWriter qui sert comme un tampon(stream)
-			output.write("varN: "+varN+"\n"+"VarE: "+varE+"\n");
+			output.println(varN+"\n"+varE);
+			
 			//on peut utiliser plusieurs fois methode write
 			
-			output.flush();
+			//output.flush();
 			//ensuite flush envoie dans le fichier, ne pas oublier cette methode pour le BufferedWriter
 			
 			output.close();
@@ -99,6 +126,9 @@ public class clePublique {
 			}
 
 	}
+
+
+	
 	
 	
 	
