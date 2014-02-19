@@ -1,5 +1,3 @@
-package chiffrement;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -147,7 +145,7 @@ public static void genererClePrive(){
 	public void ecrire()
 	{
 		//on va chercher le chemin et le nom du fichier et on me tout ca dans un String
-		String adressedufichier = "./"+name+"ClePrivee";
+		String adressedufichier = "private_"+name+".txt";
 	
 		try
 		{
@@ -164,7 +162,7 @@ public static void genererClePrive(){
 			
 			//on marque dans le fichier ou plutot dans le BufferedWriter qui sert comme un tampon(stream)
 			//output.write("varE: "+varE+"\n"+"VarM: "+varM+"\n"+"VarU: "+varU);
-			output.write(varN+" "+varU+"\n");
+			output.write(varN+" "+varU);
 			//on peut utiliser plusieurs fois methode write
 			
 			output.flush();

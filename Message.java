@@ -1,5 +1,3 @@
-package chiffrement;
-
 import java.math.BigInteger;
 
 abstract public class Message {
