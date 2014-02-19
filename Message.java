@@ -8,11 +8,23 @@ abstract public class Message {
 	protected BigInteger [] ascii;
 	protected BigInteger varEorU;
 	protected BigInteger varN;
+	protected String texteChiffre;
 	
 	
+	public String getTexteChiffre() {
+		return texteChiffre;
+	}
+
+
+	public void setTexteChiffre(String texteChiffre) {
+		this.texteChiffre = texteChiffre;
+	}
+
+
 	public Message(BigInteger n,BigInteger eoru){
 		varEorU = eoru;
 		varN= n;
+		texteChiffre="";
 	}
 
 	

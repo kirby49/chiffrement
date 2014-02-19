@@ -9,12 +9,14 @@ public class messageAChiffrer extends Message {
 	}
 
 	public void chiffrement(){
-		for(int i =0 ; i<texte.length(); i++){
+		for(int i =0 ; i<texte.length(); i++)
+		{
 			int a =(int)texte.charAt(i);
 			BigInteger A= BigInteger.valueOf(a);
 			BigInteger res= A.modPow(varEorU, varN);
 			System.out.println(res);
 			ascii[i]=res;
+			texteChiffre+= res+" ";
 		}
 	}
 	

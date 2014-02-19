@@ -12,7 +12,7 @@ public class genererClePriveClePublic {
 		try
 		{
 			//name = args[0];
-			name="default";
+			name= default;
 		}
 		catch(Error e){}
 		clePublique clePu= new clePublique(name);

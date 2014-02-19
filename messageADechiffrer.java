@@ -12,7 +12,6 @@ public class messageADechiffrer extends Message {
 	public void dechiffrement(){
 		char[] tab = new char[ascii.length];
 		for(int i =0 ; i<ascii.length; i++){
-			//int a =(int)texte.charAt(i);
 			BigInteger A= ascii[i];
 			BigInteger res= A.modPow(varEorU, varN);
 			int a = res.intValue();
@@ -20,6 +19,26 @@ public class messageADechiffrer extends Message {
 		}
 		String resultat= new String(tab);
 		texte= resultat;
+	}
+	
+	public void dechiffrement2(){
+		String[] res=texteChiffre.split(" ");
+		BigInteger[] test= new BigInteger[res.length];
+		for (int i= 0 ; i < res.length; i++){
+			System.out.println("dechiffrement "+"i: "+res[i]+"\n");
+			test[i]= new BigInteger(res[i]);
+		}
+		this.setAscii(test);
+		char[] tab = new char[ascii.length];
+		for(int i =0 ; i<ascii.length; i++){
+			BigInteger A= ascii[i];
+			BigInteger res2= A.modPow(varEorU, varN);
+			int a = res2.intValue();
+			tab[i]=(char)a;
+		}
+		String resultat= new String(tab);
+		texte= resultat;
+
 	}
 
 }
