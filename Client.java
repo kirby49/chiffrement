@@ -55,7 +55,7 @@ public class Client {
 			}	
 			
 			try {
-				Scanner sc = new Scanner(new File(/*fichier*/"public_client.txt"));
+				Scanner sc = new Scanner(new File("public_client.txt"));
 				out.println(sc.nextLine());	
 			} catch (FileNotFoundException e) {	
 				System.err.println("Le fichier n'existe pas !");

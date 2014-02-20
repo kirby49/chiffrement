@@ -25,7 +25,7 @@ public class Reception implements Runnable {
 			BigInteger big1 = new BigInteger(f.next());
 			BigInteger big2 = new BigInteger(f.next());
 		
-				while(!message.equals("exit")){
+				while(true){
 	        	
 					MessageADechiffrer mad = new MessageADechiffrer(big1,big2);
 					message = in.readLine();
@@ -34,6 +34,8 @@ public class Reception implements Runnable {
 					mad.setTexteChiffre(tokens[1]);
 					mad.dechiffrement2();
 					System.out.println(tokens[0]+" : "+mad.getTexte());
+					if (mad.getTexte().equals("exit"))
+						break;
 				}
 			} catch (IOException e) {
 				

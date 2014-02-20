@@ -44,7 +44,7 @@ public class Server {
 			in = new BufferedReader (new InputStreamReader (socket.getInputStream()));
 			
 			try {
-				Scanner sc = new Scanner(new File(/*fichier*/"public_server.txt"));
+				Scanner sc = new Scanner(new File("public_server.txt"));
 				out.println(sc.nextLine());	
 			} catch (FileNotFoundException e) {	
 				System.err.println("Le fichier n'existe pas !");

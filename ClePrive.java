@@ -90,7 +90,6 @@ public static void genererClePrive(){
 			System.out.println("r: "+rn0+" "+rn1+" ");
 			System.out.println("u: "+un0+" "+un1+" ");
 			System.out.println("v: "+vn0+" "+vn1+" ");
-			//if((new BigInteger("2").compareTo(un0)==-1)&&(un0.compareTo(varM)==-1))
 			if((new BigInteger("2").compareTo(un0)==-1))
 			{
 				System.out.println("boucle un");
@@ -100,7 +99,6 @@ public static void genererClePrive(){
 			{
 				BigInteger k = new BigInteger("-1");
 				BigInteger res= un0.subtract(k.multiply(varM));
-				//while(!(new BigInteger("2").compareTo(res)==-1)&&(res.compareTo(varM)==-1))
 				while(!(new BigInteger("2").compareTo(res)==-1))			
 				{
 					k.subtract(BigInteger.ONE);
@@ -114,13 +112,8 @@ public static void genererClePrive(){
 		else
 		{
 			BigInteger rn2=r0.subtract(r0.divide(r1).multiply(r1));
-			BigInteger un2=u0.subtract(r0.divide(r1).multiply(u1));;
-			BigInteger vn2=v0.subtract(r0.divide(r1).multiply(v1));;
-			/*
-			System.out.println("r: "+rn0+" "+rn1+" "+ rn2 );
-			System.out.println("u: "+un0+" "+un1+" "+un2);
-			System.out.println("v: "+vn0+" "+vn1+" "+vn2);
-			*/
+			BigInteger un2=u0.subtract(r0.divide(r1).multiply(u1));
+			BigInteger vn2=v0.subtract(r0.divide(r1).multiply(v1));
 			return calcul(rn1, rn2,un1, un2, vn1, vn2);
 		}	
 		
