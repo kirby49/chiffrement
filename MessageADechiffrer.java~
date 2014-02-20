@@ -22,6 +22,7 @@ public class MessageADechiffrer extends Message {
 		String[] res=texteChiffre.split(" ");
 		BigInteger[] test= new BigInteger[res.length];
 		for (int i= 0 ; i < res.length; i++){
+			System.out.println("dechiffrement "+"i: "+res[i]+"\n");
 			test[i]= new BigInteger(res[i]);
 		}
 		this.setAscii(test);
