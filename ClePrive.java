@@ -11,9 +11,7 @@ public class ClePrive {
 	private static BigInteger varN;
 	private static String name;
 
-	ClePrive(BigInteger a, BigInteger b,BigInteger c, String n){
-		//varE= new BigInteger("7");
-		//varM= new BigInteger("4992");	
+	ClePrive(BigInteger a, BigInteger b,BigInteger c, String n){	
 		name=n;
 		varE=a;
 		varM=b;	
@@ -30,54 +28,11 @@ public static void genererClePrive(){
 		
 		varU =calcul(varE,varM, u0,u1,v0,v1);
 		
-		System.out.println("U a pour valeur :"+varU);
 	}
 	
 	//fonction récursive pour calculer u;
 	public static BigInteger calcul(BigInteger r0, BigInteger r1,BigInteger u0, BigInteger u1, BigInteger v0, BigInteger v1 ){
-		/*
-		BigInteger rn0=r0;
-		BigInteger un0=u0;
-		BigInteger vn0=v0;
-		BigInteger rn1=r1;
-		BigInteger un1=u1;
-		BigInteger vn1=v1;
 		
-		while (!(rn1.compareTo(BigInteger.ZERO)==0)) 
-		{
-			BigInteger tempR=rn0.subtract(rn0.divide(rn1).multiply(rn1));
-			BigInteger tempU=un0.subtract(rn0.divide(rn1).multiply(un1));
-			BigInteger tempV=vn0.subtract(rn0.divide(rn1).multiply(vn1));
-			rn0=r1;
-			un0=u1;
-			vn0=v1;
-			rn1=tempR;
-			un1=tempU;
-			vn1= tempV;
-			System.out.println("r: "+rn0+" "+rn1 );
-			System.out.println("u: "+un0+" "+un1);
-			System.out.println("v: "+vn0+" "+vn1);
-		}
-		System.out.println("dehors de la boucle");
-		if(new BigInteger("2").compareTo(un0)==-1)
-		{
-			System.out.println("dans la condition 1");
-			return un0;
-		}
-		else
-		{
-			System.out.println("dans la condition 2");
-			BigInteger k = new BigInteger("-1");
-			BigInteger res= un0.subtract(k.multiply(varM));
-			while(new BigInteger("2").compareTo(res)==-1)
-			{
-				k.subtract(BigInteger.ONE);
-				res= un0.subtract(k.multiply(varM));
-				
-			}
-			return res;
-		}	
-		*/		
 		BigInteger rn0=r0;
 		BigInteger un0=u0;
 		BigInteger vn0=v0;

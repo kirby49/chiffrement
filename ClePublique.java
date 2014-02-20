@@ -27,8 +27,6 @@ public class ClePublique {
 		while(varP.equals(varQ)){
 			varQ= BigInteger.probablePrime(100, new Random());
 		}
-		//if (varP.isProbablePrime(100)) System.out.println("la variable p est peut etre pas premier");
-		//if (varQ.isProbablePrime(100)) System.out.println("la variable q est peut etre pas premier");
 		
 		varN= varP.multiply(varQ);
 		varM=varP.subtract(BigInteger.ONE).multiply(varQ.subtract(BigInteger.ONE));
@@ -43,18 +41,7 @@ public class ClePublique {
 	}
 
 	public static  BigInteger choisirE(BigInteger m) {
-		/*
-		BigInteger resultat = new BigInteger(10,new Random());
-		//boucle tant que resultat n'est pas impair et premier avec m
-		while((resultat.mod(BigInteger.ONE.add(BigInteger.ONE)).equals(BigInteger.ZERO)))
-		{
-			if(resultat.gcd(m).equals(BigInteger.ONE)) 
-				break;
-			else
-				resultat = new BigInteger(10,new Random());
-		}
-		return resultat;
-		*/
+
 		BigInteger resultat = new BigInteger(10,new Random());
 		//boucle tant que resultat n'est pas impair et premier avec m
 		while
@@ -62,12 +49,6 @@ public class ClePublique {
 				(
 						!(resultat.gcd(m).compareTo(BigInteger.ONE)==0)
 				) 
-				/*
-				&&			
-				(
-						!(resultat.mod(new BigInteger("2")).compareTo(BigInteger.ONE)==0)
-				) 
-				*/
 			)
 			resultat = new BigInteger(10,new Random());
 		
