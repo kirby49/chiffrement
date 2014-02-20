@@ -22,10 +22,13 @@ public class Client {
 		String login;
 		String name ="client";
 		
+		System.out.println("===========Clé Publique==========");
 		
 		ClePublique clePu= new ClePublique(name);
 		clePu.ecrire();
 
+		System.out.println("============Clé Privée===========");
+		
 		ClePrive clePrive= new ClePrive(clePu.getVarE(),clePu.getVarM(),clePu.getVarN(),name); 
 		clePrive.ecrire();
 

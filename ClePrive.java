@@ -47,7 +47,6 @@ public static void genererClePrive(){
 			System.out.println("v: "+vn0+" "+vn1+" ");
 			if((new BigInteger("2").compareTo(un0)==-1))
 			{
-				System.out.println("boucle un");
 				return un0;
 			}
 			else
